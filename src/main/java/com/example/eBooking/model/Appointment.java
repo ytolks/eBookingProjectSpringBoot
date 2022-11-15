@@ -1,4 +1,4 @@
-package com.example.eBooking.appointment;
+package com.example.eBooking.model;
 
 import lombok.Data;
 

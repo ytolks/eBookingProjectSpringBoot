@@ -1,4 +1,4 @@
-package com.example.eBooking.client;
+package com.example.eBooking.model;
 
 import lombok.Data;
 
