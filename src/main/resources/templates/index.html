@@ -6,29 +6,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
-
-
 </head>
 <body>
-<div align = "center" class = "container my-2">
-<a th:href = "@{/newClientForm}">Add client</a>
+<div align="center" class="container my-2">
     <h1>Client list</h1>
+    <h2 align="left">
+        <a align="left" th:href="@{/newClientForm}" class="btn btn-secondary">Add client</a>
+    </h2>
     <table border="0" class="table table-hover table-striped table-responsive-sm ">
-       <thead>
-       <tr>
-
-           <th>#</th>
-           <th>Client email</th>
-           <th>Client contact number</th>
-
-       </tr>
-       </thead>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Client email</th>
+            <th>Client contact number</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
         <tbody>
-        <tr th:each = "client : ${clientList}">
+        <tr th:each="client : ${clientList}">
 
             <td th:text="${client.id}"></td>
             <td th:text="${client.clientEmail}"></td>
             <td th:text="${client.clientPhoneNumber}"></td>
+            <td><a th:href="@{/updateClientData/{id}(id=${client.id})}" class="btn btn-primary btn-sm">update</a>
+            <a th:href="@{/deleteClient/{id}(id=${client.id})}" class="btn btn-warning btn-sm">delete </a></td>
         </tr>
         </tbody>
     </table>

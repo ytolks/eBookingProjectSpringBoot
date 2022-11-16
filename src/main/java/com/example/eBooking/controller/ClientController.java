@@ -5,9 +5,7 @@ import com.example.eBooking.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ClientController {
@@ -32,4 +30,18 @@ public class ClientController {
         clientService.saveClient(client);
         return "redirect:/";
     }
+
+    @GetMapping("/updateClientData/{id}")
+    public String showClientUpdateDataForm(@PathVariable(value = "id") Long id, Model model){
+        model.addAttribute("client", clientService.findClientById(id));
+        return "update_client";
+    }
+
+
+    @GetMapping("/deleteClient/{id}")
+    public String deleteClient(@PathVariable(value = "id") Long id) {
+        clientService.deleteClientById(id);
+        return "redirect:/";
+    }
+
 }
