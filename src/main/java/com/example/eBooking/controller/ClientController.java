@@ -8,15 +8,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/")
 public class ClientController {
 
     @Autowired
     private ClientService clientService;
 
-    @GetMapping("/")
-    public String viewHomePage(Model model){
-        model.addAttribute("clientList", clientService.getAllClients());
-        return "index";
+    @GetMapping
+    public String viewHomePage(){
+        return "home_page";
+    }
+
+    @GetMapping("/clientList")
+    public String viewHomePageClientList(Model model){
+       model.addAttribute("clientList", clientService.getAllClients());
+        return "fetched_db";
     }
 
     @GetMapping("/newClientForm") //href link
@@ -28,7 +34,7 @@ public class ClientController {
     @PostMapping("/addClient")
         public String addNewClient(@ModelAttribute("client") Client client){
         clientService.saveClient(client);
-        return "redirect:/";
+        return "redirect:/clientList";
     }
 
     @GetMapping("/updateClientData/{id}")
@@ -41,7 +47,7 @@ public class ClientController {
     @GetMapping("/deleteClient/{id}")
     public String deleteClient(@PathVariable(value = "id") Long id) {
         clientService.deleteClientById(id);
-        return "redirect:/";
+        return "redirect:/clientList";
     }
 
 }

@@ -35,6 +35,7 @@ public class Client {
                 nullable = false,
                 columnDefinition = "VARCHAR(50)"
         )
+
         private String clientEmail;
 
         @Column (
@@ -42,6 +43,7 @@ public class Client {
                 nullable = false,
                 columnDefinition = "TEXT"
         )
+
         private String clientPhoneNumber;
 
         public Client() {
